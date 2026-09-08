@@ -4,7 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Investment Protocol</title>
-
 <style>
 :root{
   --bg:#071018;
@@ -17,68 +16,24 @@
   --yellow:#ffd166;
   --red:#ff6b7a;
   --cyan:#44d8ff;
+  --gray:#a8b5bd;
 }
-
-*{
-  box-sizing:border-box;
-}
-
-html,body{
-  margin:0;
-  padding:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-}
-
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 body{
   background-image:
     linear-gradient(rgba(68,216,255,.025) 1px, transparent 1px),
     linear-gradient(90deg, rgba(68,216,255,.025) 1px, transparent 1px);
   background-size:28px 28px;
 }
-
-main{
-  max-width:860px;
-  margin:0 auto;
-  padding:24px 14px 40px;
-}
-
-.header{
-  margin-bottom:16px;
-}
-
-.kicker{
-  font-size:11px;
-  letter-spacing:.18em;
-  color:var(--cyan);
-  font-weight:700;
-}
-
-h1{
-  font-size:clamp(24px,6vw,38px);
-  margin:5px 0 3px;
-  letter-spacing:.04em;
-}
-
-.help{
-  font-size:12px;
-  color:var(--muted);
-}
-
-.protocol{
-  border:1px solid var(--line);
-  background:rgba(13,23,32,.96);
-}
-
-.item{
-  border-bottom:1px solid var(--line);
-}
-
-.item:last-child{
-  border-bottom:none;
-}
-
+main{max-width:860px;margin:0 auto;padding:24px 14px 48px}
+.header{margin-bottom:16px}
+.kicker{font-size:11px;letter-spacing:.18em;color:var(--cyan);font-weight:700}
+h1{font-size:clamp(24px,6vw,38px);margin:5px 0 3px;letter-spacing:.04em}
+.help{font-size:12px;color:var(--muted)}
+.protocol{border:1px solid var(--line);background:rgba(13,23,32,.96)}
+.item{border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:none}
 .item-main{
   display:grid;
   grid-template-columns:42px minmax(0,1fr) 138px;
@@ -87,26 +42,9 @@ h1{
   min-height:76px;
   padding:12px 14px;
 }
-
-.number{
-  font-size:11px;
-  color:var(--muted);
-  letter-spacing:.14em;
-}
-
-.title{
-  font-size:14px;
-  font-weight:800;
-  letter-spacing:.07em;
-}
-
-.desc{
-  margin-top:4px;
-  font-size:11px;
-  color:var(--muted);
-  line-height:1.45;
-}
-
+.number{font-size:11px;color:var(--muted);letter-spacing:.14em}
+.title{font-size:14px;font-weight:800;letter-spacing:.07em}
+.desc{margin-top:4px;font-size:11px;color:var(--muted);line-height:1.45}
 .current{
   min-height:44px;
   border-radius:8px;
@@ -116,38 +54,14 @@ h1{
   font-weight:800;
   letter-spacing:.06em;
   cursor:pointer;
-  color:var(--text);
+  color:var(--gray);
 }
-
-.current.good{
-  color:var(--green);
-  border-color:rgba(94,230,168,.45);
-  background:rgba(94,230,168,.08);
-}
-
-.current.warn{
-  color:var(--yellow);
-  border-color:rgba(255,209,102,.45);
-  background:rgba(255,209,102,.08);
-}
-
-.current.bad{
-  color:var(--red);
-  border-color:rgba(255,107,122,.45);
-  background:rgba(255,107,122,.08);
-}
-
-.choices{
-  display:none;
-  padding:0 14px 14px 68px;
-}
-
-.item.open .choices{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:8px;
-}
-
+.current.good{color:var(--green);border-color:rgba(94,230,168,.45);background:rgba(94,230,168,.08)}
+.current.warn{color:var(--yellow);border-color:rgba(255,209,102,.45);background:rgba(255,209,102,.08)}
+.current.bad{color:var(--red);border-color:rgba(255,107,122,.45);background:rgba(255,107,122,.08)}
+.current.empty{color:var(--gray);border-color:rgba(168,181,189,.28);background:rgba(168,181,189,.04)}
+.choices{display:none;padding:0 14px 14px 68px}
+.item.open .choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .choice{
   min-height:42px;
   border-radius:8px;
@@ -158,128 +72,75 @@ h1{
   font-weight:700;
   cursor:pointer;
 }
-
-.choice[data-state="good"]{
-  color:var(--green);
-}
-
-.choice[data-state="warn"]{
-  color:var(--yellow);
-}
-
-.choice[data-state="bad"]{
-  color:var(--red);
-}
-
+.choice:hover{border-color:var(--cyan)}
+.choice[data-state="good"]{color:var(--green)}
+.choice[data-state="warn"]{color:var(--yellow)}
+.choice[data-state="bad"]{color:var(--red)}
 .decision{
   margin-top:16px;
   padding:18px;
   border:1px solid var(--line);
   background:rgba(13,23,32,.96);
 }
-
-.decision-top{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  color:var(--muted);
-  font-size:11px;
-  letter-spacing:.13em;
-}
-
-#decision{
-  margin-top:6px;
-  font-size:clamp(32px,9vw,54px);
-  font-weight:900;
-  letter-spacing:.12em;
-}
-
-#decision.buy{
-  color:var(--green);
-}
-
-#decision.wait{
-  color:var(--yellow);
-}
-
-#decision.pass{
-  color:var(--red);
-}
-
-#reason{
-  margin-top:4px;
-  font-size:12px;
-  color:var(--muted);
-  line-height:1.55;
-}
-
-.footer{
-  display:flex;
-  justify-content:flex-end;
-  margin-top:12px;
-}
-
-#reset{
-  min-height:42px;
-  padding:0 14px;
-  border-radius:8px;
-  border:1px solid var(--line);
-  background:transparent;
-  color:var(--muted);
-  cursor:pointer;
-}
-
-button:focus-visible{
-  outline:2px solid var(--cyan);
-  outline-offset:2px;
-}
-
+.decision-top{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:11px;letter-spacing:.13em}
+#decision{margin-top:6px;font-size:clamp(32px,9vw,54px);font-weight:900;letter-spacing:.08em;color:var(--gray)}
+#decision.buy{color:var(--green)}
+#decision.wait{color:var(--yellow)}
+#decision.pass{color:var(--red)}
+#decision.incomplete{color:var(--gray)}
+#reason{margin-top:4px;font-size:12px;color:var(--muted);line-height:1.55}
+.progress{margin-top:10px;height:4px;background:#13232d;overflow:hidden;border-radius:999px}
+.progress > span{display:block;width:0;height:100%;background:var(--cyan);transition:width .2s ease}
+.footer{display:flex;justify-content:flex-end;margin-top:12px}
+#reset{min-height:42px;padding:0 14px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
+button:focus-visible, summary:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.guide{margin-top:34px}
+.guide-head{margin-bottom:12px}
+.guide-title{font-size:18px;font-weight:900;letter-spacing:.08em}
+.guide-sub{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.55}
+.guide details{border:1px solid var(--line);background:rgba(13,23,32,.92);margin-top:9px}
+.guide summary{list-style:none;cursor:pointer;padding:14px;display:flex;align-items:center;gap:12px}
+.guide summary::-webkit-details-marker{display:none}
+.guide .gnum{font-size:10px;color:var(--cyan);letter-spacing:.12em;min-width:24px}
+.guide .gtitle{font-size:13px;font-weight:900;letter-spacing:.06em}
+.guide .arrow{margin-left:auto;color:var(--muted);font-size:12px}
+.guide details[open] .arrow{transform:rotate(90deg)}
+.guide-body{padding:0 14px 15px 50px;border-top:1px solid rgba(33,55,70,.7)}
+.where{margin-top:12px;padding:10px 11px;background:#0a141b;border-left:2px solid var(--cyan);font-size:11px;line-height:1.6;color:#c9d8df}
+.where strong{color:var(--cyan)}
+.metric{font-size:11px;color:var(--muted);line-height:1.6;margin-top:10px}
+.option{margin-top:10px;display:grid;grid-template-columns:92px 1fr;gap:10px;align-items:start;font-size:11px;line-height:1.55}
+.tag{display:inline-flex;align-items:center;justify-content:center;min-height:28px;border-radius:6px;border:1px solid var(--line);font-weight:800;letter-spacing:.04em;padding:3px 7px}
+.tag.good{color:var(--green);border-color:rgba(94,230,168,.4);background:rgba(94,230,168,.07)}
+.tag.warn{color:var(--yellow);border-color:rgba(255,209,102,.4);background:rgba(255,209,102,.07)}
+.tag.bad{color:var(--red);border-color:rgba(255,107,122,.4);background:rgba(255,107,122,.07)}
+.note{margin-top:12px;font-size:10px;color:#6f8794;line-height:1.55}
 @media(max-width:600px){
-  .item-main{
-    grid-template-columns:34px minmax(0,1fr);
-    padding:12px;
-  }
-
-  .current{
-    grid-column:1 / -1;
-    width:100%;
-  }
-
-  .choices{
-    padding:0 12px 12px;
-  }
-
-  .item.open .choices{
-    grid-template-columns:1fr;
-  }
+  main{padding:18px 12px 40px}
+  .item-main{grid-template-columns:34px minmax(0,1fr);padding:12px}
+  .current{grid-column:1 / -1;width:100%}
+  .choices{padding:0 12px 12px}
+  .item.open .choices{grid-template-columns:1fr}
+  .guide-body{padding:0 12px 14px}
+  .option{grid-template-columns:86px 1fr}
 }
 </style>
 </head>
-
 <body>
-
 <main>
-
   <div class="header">
     <div class="kicker">SHORT-TERM SWING SYSTEM</div>
     <h1>INVESTMENT PROTOCOL</h1>
-    <div class="help">判定をタップ → 選択肢を選ぶ</div>
+    <div class="help">判定をタップ → 選択肢を選ぶ。初期状態はすべて未選択。</div>
   </div>
 
   <section class="protocol" id="protocol">
-
     <div class="item" data-key="market">
       <div class="item-main">
         <div class="number">01</div>
-        <div>
-          <div class="title">MARKET TREND</div>
-          <div class="desc">TOPIX・業種の方向</div>
-        </div>
-        <button type="button" class="current good" data-state="good">
-          STRONG
-        </button>
+        <div><div class="title">MARKET TREND</div><div class="desc">TOPIX・業種の方向</div></div>
+        <button type="button" class="current empty" data-state="">SELECT</button>
       </div>
-
       <div class="choices">
         <button type="button" class="choice" data-state="good">STRONG</button>
         <button type="button" class="choice" data-state="warn">NEUTRAL</button>
@@ -290,15 +151,9 @@ button:focus-visible{
     <div class="item" data-key="event">
       <div class="item-main">
         <div class="number">02</div>
-        <div>
-          <div class="title">EVENT CHECK</div>
-          <div class="desc">決算・権利日などの直近イベント</div>
-        </div>
-        <button type="button" class="current good" data-state="good">
-          CLEAR
-        </button>
+        <div><div class="title">EVENT CHECK</div><div class="desc">決算・権利日などの直近イベント</div></div>
+        <button type="button" class="current empty" data-state="">SELECT</button>
       </div>
-
       <div class="choices">
         <button type="button" class="choice" data-state="good">CLEAR</button>
         <button type="button" class="choice" data-state="warn">CAUTION</button>
@@ -309,15 +164,9 @@ button:focus-visible{
     <div class="item" data-key="momentum">
       <div class="item-main">
         <div class="number">03</div>
-        <div>
-          <div class="title">MOMENTUM</div>
-          <div class="desc">20MA・5MA・出来高</div>
-        </div>
-        <button type="button" class="current good" data-state="good">
-          STRONG
-        </button>
+        <div><div class="title">MOMENTUM</div><div class="desc">20MA・5MA・出来高</div></div>
+        <button type="button" class="current empty" data-state="">SELECT</button>
       </div>
-
       <div class="choices">
         <button type="button" class="choice" data-state="good">STRONG</button>
         <button type="button" class="choice" data-state="warn">GOOD</button>
@@ -328,17 +177,9 @@ button:focus-visible{
     <div class="item" data-key="fundamental">
       <div class="item-main">
         <div class="number">04</div>
-        <div>
-          <div class="title">FUNDAMENTAL</div>
-          <div class="desc">
-            PBR・ROIC・営業利益成長・自己資本比率
-          </div>
-        </div>
-        <button type="button" class="current good" data-state="good">
-          GOOD
-        </button>
+        <div><div class="title">FUNDAMENTAL</div><div class="desc">PBR・ROIC・営業利益成長率・自己資本比率</div></div>
+        <button type="button" class="current empty" data-state="">SELECT</button>
       </div>
-
       <div class="choices">
         <button type="button" class="choice" data-state="good">GOOD</button>
         <button type="button" class="choice" data-state="warn">NORMAL</button>
@@ -349,15 +190,9 @@ button:focus-visible{
     <div class="item" data-key="entry">
       <div class="item-main">
         <div class="number">05</div>
-        <div>
-          <div class="title">ENTRY</div>
-          <div class="desc">5日線乖離と押し目の位置</div>
-        </div>
-        <button type="button" class="current warn" data-state="warn">
-          WAIT
-        </button>
+        <div><div class="title">ENTRY</div><div class="desc">5日線乖離と押し目の位置</div></div>
+        <button type="button" class="current empty" data-state="">SELECT</button>
       </div>
-
       <div class="choices">
         <button type="button" class="choice" data-state="good">ENTRY</button>
         <button type="button" class="choice" data-state="warn">WAIT</button>
@@ -368,230 +203,238 @@ button:focus-visible{
     <div class="item" data-key="risk">
       <div class="item-main">
         <div class="number">06</div>
-        <div>
-          <div class="title">RISK / EXIT</div>
-          <div class="desc">
-            損切り -5% / 利確 +10% / 最大20営業日
-          </div>
-        </div>
-        <button type="button" class="current good" data-state="good">
-          OK
-        </button>
+        <div><div class="title">RISK / EXIT</div><div class="desc">損切り -5% / 利確 +10% / 最大20営業日</div></div>
+        <button type="button" class="current empty" data-state="">SELECT</button>
       </div>
-
       <div class="choices">
         <button type="button" class="choice" data-state="good">OK</button>
         <button type="button" class="choice" data-state="warn">CHECK</button>
         <button type="button" class="choice" data-state="bad">NG</button>
       </div>
     </div>
-
   </section>
 
   <section class="decision">
-    <div class="decision-top">
-      <span>SYSTEM DECISION</span>
-      <span>AUTO</span>
-    </div>
-
-    <div id="decision" class="wait">
-      WAIT
-    </div>
-
-    <div id="reason">
-      ENTRY を再確認。
-    </div>
+    <div class="decision-top"><span>SYSTEM DECISION</span><span id="count">0 / 6</span></div>
+    <div id="decision" class="incomplete">INCOMPLETE</div>
+    <div id="reason">6項目をすべて選択してください。</div>
+    <div class="progress"><span id="bar"></span></div>
   </section>
 
-  <div class="footer">
-    <button type="button" id="reset">
-      RESET
-    </button>
-  </div>
+  <div class="footer"><button type="button" id="reset">RESET</button></div>
 
+  <section class="guide">
+    <div class="guide-head">
+      <div class="kicker">REFERENCE</div>
+      <div class="guide-title">PROTOCOL GUIDE</div>
+      <div class="guide-sub">「どこを見るか」「何を選ぶか」をここで確認。タップすると詳細が開きます。</div>
+    </div>
+
+    <details>
+      <summary><span class="gnum">01</span><span class="gtitle">MARKET TREND</span><span class="arrow">▶</span></summary>
+      <div class="guide-body">
+        <div class="where"><strong>WHERE TO CHECK</strong><br>SBI株アプリなどで「TOPIXの日足チャート」と「業種別騰落率・業種別ランキング」を確認。</div>
+        <div class="metric">見るもの：TOPIXと20日移動平均線 / 対象銘柄が属する業種の方向。</div>
+        <div class="option"><span class="tag good">STRONG</span><span>TOPIXが20日移動平均線より上 ＋ 業種も上昇傾向。</span></div>
+        <div class="option"><span class="tag warn">NEUTRAL</span><span>市場と業種の強弱が混在している、またはどちらかが横ばい。</span></div>
+        <div class="option"><span class="tag bad">WEAK</span><span>TOPIXが20日移動平均線より下 ＋ 業種も下降傾向。</span></div>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="gnum">02</span><span class="gtitle">EVENT CHECK</span><span class="arrow">▶</span></summary>
+      <div class="guide-body">
+        <div class="where"><strong>WHERE TO CHECK</strong><br>銘柄情報の「決算予定日」「権利付最終日・権利落ち日」、会社IRの決算スケジュールを確認。</div>
+        <div class="metric">イベントは買い材料ではなく、短期売買で想定外の値動きを避けるためのリスク確認。</div>
+        <div class="option"><span class="tag good">CLEAR</span><span>直近に大きな予定イベントがない。</span></div>
+        <div class="option"><span class="tag warn">CAUTION</span><span>決算・権利日などが近く、値動きが普段より荒くなる可能性がある。</span></div>
+        <div class="option"><span class="tag bad">HIGH RISK</span><span>決算発表が3営業日以内など、短期エントリー直前として警戒度が高い。</span></div>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="gnum">03</span><span class="gtitle">MOMENTUM</span><span class="arrow">▶</span></summary>
+      <div class="guide-body">
+        <div class="where"><strong>WHERE TO CHECK</strong><br>個別銘柄の日足チャートで「20日移動平均線」「5日移動平均線」「出来高」を確認。</div>
+        <div class="metric">3項目：①株価 &gt; 20MA　②今日の5MA &gt; 5営業日前の5MA　③当日出来高 ÷ 20日平均出来高。</div>
+        <div class="option"><span class="tag good">STRONG</span><span>3項目すべてクリア。出来高は目安として1.5倍以上なら明確な増加。</span></div>
+        <div class="option"><span class="tag warn">GOOD</span><span>3項目のうち2つが良好。勢いはあるが、完全には揃っていない。</span></div>
+        <div class="option"><span class="tag bad">WEAK</span><span>良好な条件が1つ以下。短期の上昇モメンタムが弱い。</span></div>
+        <div class="note">※出来高増加だけでは買い判定にしない。出来高増＋株価下落は売り圧力の可能性もある。</div>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="gnum">04</span><span class="gtitle">FUNDAMENTAL</span><span class="arrow">▶</span></summary>
+      <div class="guide-body">
+        <div class="where"><strong>WHERE TO CHECK</strong><br>SBIなどの銘柄情報「財務・指標」、会社IRの決算短信・決算資料で確認。</div>
+        <div class="metric">PBR（株価純資産倍率） / ROIC（投下資本利益率） / 営業利益成長率 / 自己資本比率。</div>
+        <div class="option"><span class="tag good">GOOD</span><span>4項目を総合して、割高感・資本効率・本業の成長・財務安全性に大きな問題がない。</span></div>
+        <div class="option"><span class="tag warn">NORMAL</span><span>一部に弱さはあるが、即見送りとするほどではない。</span></div>
+        <div class="option"><span class="tag bad">WEAK</span><span>複数項目に明確な弱さがあり、短期候補として避けたい。</span></div>
+        <div class="note">※PBR・ROIC・営業利益成長率・自己資本比率の具体的な数値基準は、まだ未確定。ここは次に詰める。</div>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="gnum">05</span><span class="gtitle">ENTRY</span><span class="arrow">▶</span></summary>
+      <div class="guide-body">
+        <div class="where"><strong>WHERE TO CHECK</strong><br>個別銘柄の日足チャートで現在値・5日移動平均線・20日移動平均線・前日終値を確認。</div>
+        <div class="metric">5MA乖離率 ＝（現在値 − 5MA）÷ 5MA × 100。基本は20MAより上の上昇トレンド内で押し目を狙う。</div>
+        <div class="option"><span class="tag good">ENTRY</span><span>5MA乖離 0〜+3%程度 ＋ 反発確認（例：終値が前日終値を上回る）。</span></div>
+        <div class="option"><span class="tag warn">WAIT</span><span>5MA乖離 +3〜+5%程度、または押し目からの反発がまだ確認できない。</span></div>
+        <div class="option"><span class="tag bad">CHASE</span><span>5MA乖離 +5%以上。上がったところを追いかける形になるため見送る。</span></div>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="gnum">06</span><span class="gtitle">RISK / EXIT</span><span class="arrow">▶</span></summary>
+      <div class="guide-body">
+        <div class="where"><strong>WHERE TO CHECK</strong><br>注文前に自分の売買計画で「エントリー価格・損切り価格・利確価格・保有期限」を確認。</div>
+        <div class="metric">基本ルール：損切り -5% / 利確 +10% / Risk : Reward = 1 : 2 / 最大20営業日。</div>
+        <div class="option"><span class="tag good">OK</span><span>損切り・利確・期限を注文前に決められており、1:2のリスクリワードを守れる。</span></div>
+        <div class="option"><span class="tag warn">CHECK</span><span>価格や期限のどれかが未確定。買う前に計画を決め直す。</span></div>
+        <div class="option"><span class="tag bad">NG</span><span>損切りを決められない、またはリスクに対して期待利益が小さすぎる。</span></div>
+        <div class="note">短期目的で買った株を、含み損を理由に長期保有へ変更しない。</div>
+      </div>
+    </details>
+  </section>
 </main>
 
 <script>
 (function(){
-
   const protocol = document.getElementById('protocol');
   const decision = document.getElementById('decision');
   const reason = document.getElementById('reason');
   const reset = document.getElementById('reset');
+  const count = document.getElementById('count');
+  const bar = document.getElementById('bar');
 
   const names = {
-    market:'MARKET TREND',
-    event:'EVENT CHECK',
-    momentum:'MOMENTUM',
-    fundamental:'FUNDAMENTAL',
-    entry:'ENTRY',
-    risk:'RISK / EXIT'
+    market:'MARKET TREND', event:'EVENT CHECK', momentum:'MOMENTUM',
+    fundamental:'FUNDAMENTAL', entry:'ENTRY', risk:'RISK / EXIT'
   };
 
+  const STORAGE_KEY = 'investmentProtocolV5';
+
   function closeAll(except){
-
     protocol.querySelectorAll('.item.open').forEach(function(item){
-
-      if(item !== except){
-        item.classList.remove('open');
-      }
-
+      if(item !== except) item.classList.remove('open');
     });
+  }
 
+  function saveSelections(){
+    const saved = {};
+    protocol.querySelectorAll('.item').forEach(function(item){
+      const current = item.querySelector('.current');
+      saved[item.dataset.key] = {
+        label: current.textContent,
+        state: current.dataset.state
+      };
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+  }
+
+  function restoreSelections(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return;
+      const saved = JSON.parse(raw);
+
+      protocol.querySelectorAll('.item').forEach(function(item){
+        const data = saved[item.dataset.key];
+        if(!data || !data.state) return;
+
+        const current = item.querySelector('.current');
+        current.textContent = data.label || 'SELECT';
+        current.dataset.state = data.state;
+        current.classList.remove('empty','good','warn','bad');
+        current.classList.add(data.state);
+      });
+    }catch(e){
+      localStorage.removeItem(STORAGE_KEY);
+    }
   }
 
   function evaluate(){
-
-    const items = Array.from(
-      protocol.querySelectorAll('.item')
-    );
-
-    const bad = items.filter(function(item){
-
-      return item.querySelector('.current').dataset.state === 'bad';
-
+    const items = Array.from(protocol.querySelectorAll('.item'));
+    const selected = items.filter(function(item){
+      return item.querySelector('.current').dataset.state !== '';
     });
-
-    const warn = items.filter(function(item){
-
-      return item.querySelector('.current').dataset.state === 'warn';
-
-    });
-
+    count.textContent = selected.length + ' / ' + items.length;
+    bar.style.width = (selected.length / items.length * 100) + '%';
     decision.className = '';
 
-    if(bad.length){
+    if(selected.length < items.length){
+      decision.textContent = 'INCOMPLETE';
+      decision.classList.add('incomplete');
+      reason.textContent = '未選択の項目があります。6項目をすべて選択してください。';
+      return;
+    }
 
+    const bad = items.filter(function(item){
+      return item.querySelector('.current').dataset.state === 'bad';
+    });
+    const warn = items.filter(function(item){
+      return item.querySelector('.current').dataset.state === 'warn';
+    });
+
+    if(bad.length){
       decision.textContent = 'PASS';
       decision.classList.add('pass');
-
-      reason.textContent =
-        names[bad[0].dataset.key] +
-        ' が見送り条件。';
-
+      reason.textContent = names[bad[0].dataset.key] + ' が見送り条件。';
       return;
     }
-
     if(warn.length){
-
       decision.textContent = 'WAIT';
       decision.classList.add('wait');
-
-      reason.textContent =
-        names[warn[0].dataset.key] +
-        ' を再確認。';
-
+      reason.textContent = names[warn[0].dataset.key] + ' を再確認。';
       return;
     }
-
     decision.textContent = 'BUY';
     decision.classList.add('buy');
-
-    reason.textContent =
-      '全条件クリア。購入候補として検討可能。';
-
+    reason.textContent = '全条件クリア。購入候補として検討可能。';
   }
 
   protocol.querySelectorAll('.current').forEach(function(button){
-
     button.addEventListener('click', function(){
-
       const item = button.closest('.item');
-
-      const willOpen =
-        !item.classList.contains('open');
-
+      const willOpen = !item.classList.contains('open');
       closeAll(item);
-
-      item.classList.toggle(
-        'open',
-        willOpen
-      );
-
+      item.classList.toggle('open', willOpen);
     });
-
   });
 
   protocol.querySelectorAll('.choice').forEach(function(choice){
-
     choice.addEventListener('click', function(){
-
       const item = choice.closest('.item');
       const current = item.querySelector('.current');
-
-      current.textContent =
-        choice.textContent;
-
-      current.dataset.state =
-        choice.dataset.state;
-
-      current.classList.remove(
-        'good',
-        'warn',
-        'bad'
-      );
-
-      current.classList.add(
-        choice.dataset.state
-      );
-
+      current.textContent = choice.textContent;
+      current.dataset.state = choice.dataset.state;
+      current.classList.remove('empty','good','warn','bad');
+      current.classList.add(choice.dataset.state);
       item.classList.remove('open');
-
+      saveSelections();
       evaluate();
-
     });
-
   });
 
   reset.addEventListener('click', function(){
-
-    const defaults = {
-
-      market:['STRONG','good'],
-      event:['CLEAR','good'],
-      momentum:['STRONG','good'],
-      fundamental:['GOOD','good'],
-      entry:['WAIT','warn'],
-      risk:['OK','good']
-
-    };
-
     protocol.querySelectorAll('.item').forEach(function(item){
-
-      const current =
-        item.querySelector('.current');
-
-      const d =
-        defaults[item.dataset.key];
-
-      current.textContent =
-        d[0];
-
-      current.dataset.state =
-        d[1];
-
-      current.classList.remove(
-        'good',
-        'warn',
-        'bad'
-      );
-
-      current.classList.add(
-        d[1]
-      );
-
+      const current = item.querySelector('.current');
+      current.textContent = 'SELECT';
+      current.dataset.state = '';
+      current.classList.remove('good','warn','bad');
+      current.classList.add('empty');
       item.classList.remove('open');
-
     });
-
+    localStorage.removeItem(STORAGE_KEY);
     evaluate();
-
   });
 
+  restoreSelections();
   evaluate();
-
 })();
 </script>
-
 </body>
 </html>
